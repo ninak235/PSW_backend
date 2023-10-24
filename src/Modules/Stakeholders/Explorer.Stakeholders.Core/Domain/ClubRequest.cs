@@ -14,7 +14,7 @@ public class ClubRequest : Entity
 {
         public long ClubRequestId { get; init; }
         public long UserId { get; init; }
-        public long ClubOwnerId { get; init; }
+        public long ClubId { get; init; }
         public RequestStatus Status { get; init; } 
 
         public ClubRequest()
@@ -26,7 +26,7 @@ public class ClubRequest : Entity
         {
             ClubRequestId = clubRequestId;
             UserId = userId;
-            ClubOwnerId = clubOwnerId;
+            ClubId = clubOwnerId;
             Status = status;
             Validate();
         }
@@ -35,7 +35,7 @@ public class ClubRequest : Entity
         {
              if (UserId == 0) throw new ArgumentException("Invalid UserId");
              if (ClubRequestId==0) throw new ArgumentException("Invalid ClubRequestId");
-             if (ClubOwnerId==0) throw new ArgumentException("Invalid ClubOwnerId");
+             if (ClubId==0) throw new ArgumentException("Invalid ClubOwnerId");
         
         }
 }
