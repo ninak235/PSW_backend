@@ -28,7 +28,7 @@ namespace Explorer.API.Controllers.Tourist
         public ActionResult SendInvite(ClubInvitationDto invitation)
         {
             _clubInvitationService.SendInvite(invitation);
-            return NoContent(); // HTTP 204 No Content
+            return NoContent(); 
         }
         [HttpGet("{clubId}")]
         public ActionResult<PagedResult<UserDto>> GetTourists()
