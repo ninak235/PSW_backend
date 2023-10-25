@@ -76,6 +76,12 @@ namespace Explorer.Stakeholders.Core.UseCases
             return null;
         }
 
+        public Result<PagedResult<ClubMemberDto>> GetMembers(long clubId)
+        {
+
+            throw new NotImplementedException();
+        }
+
         private PagedResult<ClubInvitationDto> GetAll()
         {
             return GetPaged(0, 0).Value;

@@ -50,5 +50,7 @@ namespace Explorer.API.Controllers.Tourist
                 return BadRequest(); // Example: Return a 400 Bad Request with error details
             }
         }
+
+        
     }
 }
