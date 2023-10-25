@@ -46,7 +46,26 @@ namespace Explorer.API.Controllers.Tourist
             return CreateResponse(result);
         }
 
+        [HttpGet("{userId}")]
+        public ActionResult<PagedResult<ClubRequestDto>> GetOwnersClubRequest()
+        {
+            var userIdString = HttpContext.Request.RouteValues["userId"].ToString();
 
+            long.TryParse(userIdString, out long userId);
+            var serviceResult = _clubRequestService.GetOwnersClubRequests(userId);
+
+
+            if (serviceResult.IsSuccess)
+            {
+                var pagedResult = serviceResult.Value;
+                return Ok(pagedResult);
+            }
+            else
+            {
+                // Handle the error condition appropriately and return a corresponding ActionResult
+                return BadRequest(); // Example: Return a 400 Bad Request with error details
+            }
+        }
     }
 }
 

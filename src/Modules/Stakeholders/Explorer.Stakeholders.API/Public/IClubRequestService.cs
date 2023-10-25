@@ -11,4 +11,5 @@ public interface IClubRequestService
     Result<ClubRequestDto> RemoveRequest(ClubRequestDto clubRequest);
 
     Result<ClubRequestDto> Update(ClubRequestDto clubRequest);
+    Result<PagedResult<ClubRequestDto>> GetOwnersClubRequests(long userId);
 }
