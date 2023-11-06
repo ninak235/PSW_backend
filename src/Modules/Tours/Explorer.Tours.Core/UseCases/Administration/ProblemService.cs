@@ -20,30 +20,23 @@ namespace Explorer.Tours.Core.UseCases.Administration
 {
     public class ProblemService : CrudService<ProblemDto, Problem>, IProblemService
     {
-        private readonly ICrudRepository<Problem> _repository;
-        private readonly IMapper _mapper;
-        public ProblemService(ICrudRepository<Problem> repository, IMapper mapper) : base(repository, mapper)
+        public ProblemService(ICrudRepository<Problem> repository, IMapper mapper) : base(repository, mapper) { }
+
+        public Result<PagedResult<ProblemDto>> GetByTouristId(int userId, int page, int pageSize)
         {
-            _repository = repository;
-            _mapper = mapper;
+            var allProblems = CrudRepository.GetPaged(page, pageSize);
+            var filteredProblems = allProblems.Results.Where(prob => prob.IdTourist == userId);
+            var filteredPagedResult = new PagedResult<Problem>(filteredProblems.ToList(), filteredProblems.Count());
+            return MapToDto(filteredPagedResult);
         }
 
+        public Result<PagedResult<ProblemDto>> GetByAuthorId(int userId, int page, int pageSize)
+        {
+            var allProblems = CrudRepository.GetPaged(page, pageSize);
+            var filteredProblems = allProblems.Results.Where(prob => prob.IdAuthor == userId);
+            var filteredPagedResult = new PagedResult<Problem>(filteredProblems.ToList(), filteredProblems.Count());
+            return MapToDto(filteredPagedResult);
 
-        //ovo ne znam dal treba
-        public Result<ProblemDto> Report(ProblemDto dto)
-        {
-            throw new NotImplementedException();
-        }
-        public Result<List<ProblemDto>> GetByUserId(int userId, int page, int pageSize)
-        {
-            var allProblems=CrudRepository.GetPaged(page, pageSize);
-            List<Problem>filteredProblem=allProblems.Results.Where(problem=>problem.Id==userId).ToList();
-            return MapToDto(filteredProblem);
-        }
-
-        public Result<List<ProblemDto>> GetByUserId(int userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -20,10 +20,10 @@ namespace Explorer.API.Controllers.Tourist
             _problemService = problemService;
         }
 
-        [HttpGet("{id:int}")]
-        public ActionResult<List<ProblemDto>> GetByUserId(int userId, [FromQuery] int page, [FromQuery] int pageSize)
+        [HttpGet("{userId:int}")]
+        public ActionResult<List<ProblemDto>> GetByTouristId(int userId, [FromQuery] int page, [FromQuery] int pageSize)
         {
-            var result = _problemService.GetByUserId(userId, page, pageSize);
+            var result = _problemService.GetByTouristId(userId, page, pageSize);
             return CreateResponse(result);
         }
 
@@ -32,7 +32,7 @@ namespace Explorer.API.Controllers.Tourist
         {
 
 
-            var result = _problemService.Report(problem);
+            var result = _problemService.Create(problem);
             return CreateResponse(result);
         }
 
