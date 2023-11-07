@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace Explorer.Tours.API.Dtos
 {
-    public class TourEquipmentDto
+    public class TouristEquipmentDto
     {
-
         public int Id { get; set; }
+        public int TouristId { get; set; }
+        public List<int> Equipment { get; set; }
 
-        public long TourId { get; set; } 
-        public long EquipmentId { get; set; } 
-
-        public bool IsSelected { get; set; }
     }
 }
