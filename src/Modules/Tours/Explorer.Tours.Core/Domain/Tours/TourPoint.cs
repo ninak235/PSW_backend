@@ -11,7 +11,6 @@ namespace Explorer.Tours.Core.Domain.Tours
     public class TourPoint : Entity
     {
         public int IdTour { get; init; }
-
         public Tour? Tour { get; init; }
         public string Name { get; init; }
         public string? Description { get; init; }
