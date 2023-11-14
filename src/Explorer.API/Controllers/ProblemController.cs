@@ -21,6 +21,13 @@ namespace Explorer.API.Controllers
             _problemService = problemService;
         }
 
+        [HttpGet("closestDeadline/{id:int}")]
+        public ActionResult<ProblemDto> getGuideProblemWithClosestDeadline(int id, [FromQuery] int page, [FromQuery] int pageSize)
+        {
+            var result = _problemService.getGuideProblemWithClosestDeadline(id, page, pageSize);
+            return CreateResponse(result);
+        }
+
         [Authorize(Policy = "touristPolicy")]
         [HttpGet("byTourist/{userId:int}")]
         public ActionResult<List<ProblemDto>> GetByTouristId(int userId, [FromQuery] int page, [FromQuery] int pageSize)
@@ -37,7 +44,7 @@ namespace Explorer.API.Controllers
             return CreateResponse(result);
         }
 
-        [HttpGet("/byId/{id:int}")]
+        [HttpGet("byId/{id:int}")]
         public ActionResult<PagedResult<ProblemDto>> GetById(int id)
         {
             var result = _problemService.Get(id);
@@ -91,6 +98,7 @@ namespace Explorer.API.Controllers
             var result = _problemService.Delete(id);
             return CreateResponse(result);
         }
+
 
     }
 }

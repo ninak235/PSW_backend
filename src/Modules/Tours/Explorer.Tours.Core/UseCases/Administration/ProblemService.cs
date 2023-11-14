@@ -64,5 +64,21 @@ namespace Explorer.Tours.Core.UseCases.Administration
             var filteredPagedResult = new PagedResult<Problem>(filteredProblems.ToList(), filteredProblems.Count());
             return MapToDto(filteredPagedResult);
         }
+
+        public Result<ProblemDto> getGuideProblemWithClosestDeadline(int id, int page, int pageSize)
+        {
+            var allProblems = CrudRepository.GetPaged(page, pageSize);
+            var filteredProblems = allProblems.Results.Where(prob => prob.IdGuide == id && prob.Deadline != null);
+
+            if(filteredProblems.Any())
+            {
+                var closestProblem = filteredProblems.OrderBy(prob => Math.Abs((prob.Deadline - DateTime.Now).TotalSeconds)).First();
+                return MapToDto(closestProblem);
+            }
+
+            return null;
+            
+        }
+        
     }
 }

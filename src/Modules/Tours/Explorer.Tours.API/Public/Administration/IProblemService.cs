@@ -21,5 +21,6 @@ namespace Explorer.Tours.API.Public.Administration
         Result<PagedResult<ProblemDto>> GetUnsolvedProblems(int page, int pageSize);
 
         Result<ProblemDto> Get(int id);
+        Result<ProblemDto> getGuideProblemWithClosestDeadline(int id, int page, int pageSize);
     }
 }
