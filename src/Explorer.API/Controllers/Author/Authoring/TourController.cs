@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Explorer.API.Controllers.Author.Authoring
 {
-   // [Authorize(Policy = "authorPolicy")] **** premjesteno za svaku metodu posebno, zbog dodatne metode za turistu
     [Route("api/administration/tour")]
     public class TourController : BaseApiController
     {
@@ -21,14 +20,12 @@ namespace Explorer.API.Controllers.Author.Authoring
         [HttpPost]
         public ActionResult<TourDTO> Create([FromBody] TourDTO tour)
         {
-
             tour.Status = "Draft";
             tour.Price = 0;
 
             var result = _tourService.Create(tour);
 
             return CreateResponse(result);
-
         }
 
 
@@ -51,7 +48,6 @@ namespace Explorer.API.Controllers.Author.Authoring
             return CreateResponse(result);
         }
         
-        [Authorize(Policy = "authorPolicy")]
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
@@ -96,6 +92,14 @@ namespace Explorer.API.Controllers.Author.Authoring
         public ActionResult DeleteAggregate(int id)
         {
             var result = _tourService.DeleteAggregate(id);
+            return CreateResponse(result);
+        }
+
+        [HttpGet("onetour/{id:int}")]
+
+        public ActionResult<TourDTO> getTourByTourId(int id)
+        {
+            var result = _tourService.getTourByTourId(id);
             return CreateResponse(result);
         }
         //dodato za tourReview
