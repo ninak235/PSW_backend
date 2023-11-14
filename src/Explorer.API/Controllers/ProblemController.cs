@@ -37,6 +37,13 @@ namespace Explorer.API.Controllers
             return CreateResponse(result);
         }
 
+        [HttpGet("/byId/{id:int}")]
+        public ActionResult<PagedResult<ProblemDto>> GetById(int id)
+        {
+            var result = _problemService.Get(id);
+            return CreateResponse(result);
+        }
+
         [HttpGet("byUnreadMessages/{idUser:int}")]
         public int IsThereUnreadMessages(int idUser, [FromQuery] int page, [FromQuery] int pageSize)
         {
