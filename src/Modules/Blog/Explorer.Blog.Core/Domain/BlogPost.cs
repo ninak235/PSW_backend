@@ -105,7 +105,5 @@ namespace Explorer.Blog.Core.Domain
                 Ratings.Remove(ratingToRemove);
             }
         }
-
-
     }
 }
