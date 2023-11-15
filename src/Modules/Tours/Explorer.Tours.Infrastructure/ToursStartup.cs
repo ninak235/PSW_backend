@@ -101,7 +101,7 @@ public static class ToursStartup
 
 
         services.AddScoped(typeof(ICrudRepository<ProblemMessage>), typeof(CrudDatabaseRepository<ProblemMessage, ToursContext>));
-
+        services.AddScoped<ITourPurchaseTokenRepository, TourPurchaseTokenRepository>();
 
 
         services.AddDbContext<ToursContext>(opt =>

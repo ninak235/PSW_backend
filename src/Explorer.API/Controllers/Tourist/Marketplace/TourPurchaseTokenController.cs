@@ -20,6 +20,13 @@ namespace Explorer.API.Controllers.Tourist.Marketplace
                 var result = _tourTokenService.GetPaged(page, pageSize);
                 return CreateResponse(result);
             }
-        }
+
+            [HttpGet("{userId:int}")]
+            public ActionResult<PagedResult<TourPurchaseTokenDto>> GetByUserId(int userId, [FromQuery] int page, [FromQuery] int pageSize)
+            {
+                var result = _tourTokenService.GetByUserId(userId, page, pageSize);
+                return CreateResponse(result);
+            }
+    }
     
 }

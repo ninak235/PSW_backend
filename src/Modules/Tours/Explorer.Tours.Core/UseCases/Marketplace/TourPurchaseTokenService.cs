@@ -18,10 +18,12 @@ namespace Explorer.Tours.Core.UseCases.Marketplace
     public class TourPurchaseTokenService : CrudService<TourPurchaseTokenDto, TourPurchaseToken>, ITourPurchaseTokenService
     {
         private readonly ICrudRepository<Tour> _tourRepository;
+        private readonly ITourPurchaseTokenRepository _tourPurchaseTokenRepository;
         private readonly IMapper _mapper;
-        public TourPurchaseTokenService(ICrudRepository<TourPurchaseToken> crudRepository, IMapper mapper, ICrudRepository<Tour> tourRepository) : base(crudRepository, mapper)
+        public TourPurchaseTokenService(ICrudRepository<TourPurchaseToken> crudRepository, IMapper mapper, ICrudRepository<Tour> tourRepository,ITourPurchaseTokenRepository tourPurchaseTokenRepository) : base(crudRepository, mapper)
         {
             _tourRepository = tourRepository;
+            _tourPurchaseTokenRepository=tourPurchaseTokenRepository;
         }
 
         public Result<List<TourDTO>> GetPurchasedTours(int touristId)
@@ -38,6 +40,12 @@ namespace Explorer.Tours.Core.UseCases.Marketplace
             }
             //dodati u enum stanje koje proverava da li je poceta ili ne ( ili kako vec treba)
             return purchacedTours;
+
+        }
+        public Result<PagedResult<TourPurchaseTokenDto>> GetByUserId(int userId, int page, int pageSize)
+        {
+            var tours = _tourPurchaseTokenRepository.GetByUserId(userId, page, pageSize);
+            return MapToDto(tours);
 
         }
     }
