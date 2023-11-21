@@ -66,7 +66,7 @@ namespace Explorer.API.Controllers.Tourist.Blog
             return CreateResponse(result);
         }
 
-        [HttpDelete("{blogPostId:int}/comments/{userId:int}/{creationTime:datetime}")]
+        [HttpDelete("{blogPostId:int}/comments/{userId:int}/{creationTime:DateTime}")]
         public ActionResult<BlogPostDto> DeleteComment(int blogPostId, int userId, DateTime creationTime)
         {
             var result = _blogPostService.RemoveComment(blogPostId, userId, creationTime);
