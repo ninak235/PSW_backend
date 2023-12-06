@@ -35,7 +35,7 @@ namespace Explorer.Tours.Core.Domain.Tours
         public ICollection<TourCharacteristic> TourCharacteristics { get; } = new List<TourCharacteristic>();
         public ICollection<TourReview> TourReviews { get; }= new List<TourReview>();
 
-        public Tour(string name, DifficultyLevel difficultyLevel, string? description, int guideId)
+        public Tour(string name, DifficultyLevel difficultyLevel, string? description, int guideId, int price)
         {
             if (string.IsNullOrWhiteSpace(name) || guideId == 0) throw new ArgumentException("Field empty.");
 
@@ -49,19 +49,20 @@ namespace Explorer.Tours.Core.Domain.Tours
             Status = TourStatus.Draft;
             PublishedDateTime = null; 
             ArchivedDateTime = null;
-            Price = 0;
+            Price = price;
             GuideId = guideId;
 
 
         }
 
-        public void UpdateTour(string name, DifficultyLevel difficultyLevel, string? description, int guideId, TourStatus status)
+        public void UpdateTour(string name, DifficultyLevel difficultyLevel, string? description, int guideId, TourStatus status, int price)
         {
             Name=name;
 			DifficultyLevel = difficultyLevel;
             Description = description;
             GuideId = guideId;
             Status = status;
+            Price=price;
 
 
 		}

@@ -21,7 +21,7 @@ namespace Explorer.API.Controllers.Author.Authoring
         public ActionResult<TourDTO> Create([FromBody] TourDTO tour)
         {
             tour.Status = "Draft";
-            tour.Price = 0;
+            //tour.Price = 0;
 
             var result = _tourService.Create(tour);
 
