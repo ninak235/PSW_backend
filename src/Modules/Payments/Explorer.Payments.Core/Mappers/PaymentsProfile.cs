@@ -16,6 +16,7 @@ namespace Explorer.Payments.Core.Mappers
             CreateMap<ShoppingCartDto, ShoppingCart>().ReverseMap();   //ShoppingCart
             CreateMap<OrderItemDto, OrderItem>().ReverseMap();
             CreateMap<TourPurchaseTokenDto, TourPurchaseToken>().ReverseMap();
+            CreateMap<WalletDto, Wallet>().ReverseMap();
 
         }
         

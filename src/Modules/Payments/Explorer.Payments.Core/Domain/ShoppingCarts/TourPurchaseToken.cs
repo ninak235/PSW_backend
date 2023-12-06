@@ -12,11 +12,15 @@ namespace Explorer.Payments.Core.Domain.ShoppingCarts
         public int TouristId { get; set; }
 
         public int IdTour { get; set; }
+        public double Price {  get; set; }
+        public DateTime? PurchaseDateTime { get; private set; }
 
-        public TourPurchaseToken(int touristId, int idTour)
+        public TourPurchaseToken(int touristId, int idTour, double price, DateTime? purchaseDateTime)
         {
             TouristId = touristId;
             IdTour = idTour;
+            Price = price;
+            PurchaseDateTime = purchaseDateTime;
         }
 
     }

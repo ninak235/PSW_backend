@@ -38,6 +38,6 @@ namespace Explorer.API.Controllers.Tourist.Marketplace
                     return StatusCode(500, "Internal server error");
                 }
             }*/
-    }
+         }
     
 }

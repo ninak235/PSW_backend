@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Explorer.Payments.API.Dtos.ShoppingCartDtos
 {
-    public class TourPurchaseTokenDto
+    public class WalletDto
     {
         public int TouristId { get; set; }
-        public int IdTour { get; set; }
-        public int Price { get; set; }
-        public DateTime PurchaseDate { get; set; }
-
+        public double Money { get; set; }
     }
 }

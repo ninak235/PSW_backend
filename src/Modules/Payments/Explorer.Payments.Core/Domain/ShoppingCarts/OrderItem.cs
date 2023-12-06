@@ -13,7 +13,7 @@ namespace Explorer.Payments.Core.Domain.ShoppingCarts
         public string TourName { get; set; }
         public double Price { get; set; }
         public int IdTour { get; set; }
-
+        public DateTime? PurchaseDateTime { get; private set; }
 
 
         [JsonConstructor]
@@ -37,7 +37,7 @@ namespace Explorer.Payments.Core.Domain.ShoppingCarts
 
         public TourPurchaseToken ToPurchaseToken(int touristId)
         {
-            return new TourPurchaseToken(touristId, IdTour);
+            return new TourPurchaseToken(touristId, IdTour, Price, PurchaseDateTime);
         }
     }
 }
