@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Explorer.BuildingBlocks.Core.Domain;
 using Explorer.BuildingBlocks.Core.UseCases;
+using Explorer.Stakeholders.API.Public;
 using Explorer.Stakeholders.Core.Domain;
+using Explorer.Stakeholders.Core.Domain.RepositoryInterfaces;
 using Explorer.Tours.API;
 using Explorer.Tours.API.Dtos;
 using Explorer.Tours.API.Public.Administration;
@@ -21,10 +23,12 @@ namespace Explorer.Tours.Core.UseCases.Authoring
     {
         private readonly IMapper _mapper;
         private readonly ITourRepository _repository;
-        public TourService(ICrudRepository<Tour> repository, ITourRepository tourRepository, IMapper mapper) : base(repository, mapper)
+        private readonly IUserService _userService;
+		public TourService(ICrudRepository<Tour> repository, ITourRepository tourRepository, IMapper mapper, IUserService userService ) : base(repository, mapper)
         {
             _mapper = mapper;
             _repository = tourRepository;
+            _userService = userService;
         }
 
         //celi agregat se dobavlja
@@ -183,9 +187,23 @@ namespace Explorer.Tours.Core.UseCases.Authoring
         public Result<PagedResult<TourDTO>> FilterToursByPublicTourPoints(PublicTourPointDto[] publicTourPoints, int page, int pageSize)
         {
             var tours = _repository.GetAll(page, pageSize).Results;
-            Console.WriteLine($"Number of Public Tour Points: {publicTourPoints.Length}");
+            var helpingTours = new List<Tour>();
 
-            var filteredTours = tours
+			foreach (var tour in tours)
+			{
+
+                var role = _userService.GetUserRole(tour.UserId);
+
+			
+				if (role == Stakeholders.API.Dtos.UserRole.Author)
+				{
+                    helpingTours.Add(tour);
+				}
+			}
+
+			Console.WriteLine($"Number of Public Tour Points: {publicTourPoints.Length}");
+
+            var filteredTours = helpingTours
                 .Where(tour => tour.TourPoints.Any(tourPoint =>
                     publicTourPoints.Any(publicTp =>
                         publicTp.Latitude == tourPoint.Latitude && publicTp.Longitude == tourPoint.Longitude)))

@@ -11,5 +11,7 @@ namespace Explorer.Stakeholders.API.Public
     public interface IUserService
     {
         Result<UserDto> Get(int userId);
+
+        UserRole GetUserRole(int userId);
     }
 }
