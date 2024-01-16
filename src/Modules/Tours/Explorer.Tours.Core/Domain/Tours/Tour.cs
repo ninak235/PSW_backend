@@ -12,6 +12,7 @@ namespace Explorer.Tours.Core.Domain.Tours
     {
         public string Name { get; private set; }
 
+
         public DifficultyLevel DifficultyLevel { get; private set; }
 
         public string Description { get; private set; }
