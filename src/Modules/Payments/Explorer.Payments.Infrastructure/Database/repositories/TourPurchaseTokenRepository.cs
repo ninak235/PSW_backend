@@ -22,5 +22,13 @@ namespace Explorer.Payments.Infrastructure.Database.repositories
         {
             return _dbContext.TourPurchaseTokens.ToList();
         }
+
+        public bool HasToken(int touristId, int tourId)
+        {
+            return _dbContext.TourPurchaseTokens.ToList().Exists(t => t.IdTour == tourId && t.TouristId == touristId);
+        }
+
+
+
     }
 }

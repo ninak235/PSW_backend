@@ -10,5 +10,7 @@ public class UserProfileDto
     public string? ProfileImage { get; set; }
     public string? Bio {  get; set; }
     public string? Quote { get; set; }
+    public double Balance { get; set; }
+
 
 }
