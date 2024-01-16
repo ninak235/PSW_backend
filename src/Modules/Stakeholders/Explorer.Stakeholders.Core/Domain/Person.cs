@@ -12,9 +12,10 @@ public class Person : Entity
     public string? ProfileImage { get; init; }
     public string? Bio { get; init; }
     public string? Quote { get; init; }
+    public double Balance { get; set; }
 
 
-    public Person(long userId, string name, string surname, string email, string? profileImage, string? bio, string? quote)
+    public Person(long userId, string name, string surname, string email, string? profileImage, string? bio, string? quote, double balance = 0)
     {
         UserId = userId;
         Name = name;
@@ -23,6 +24,7 @@ public class Person : Entity
         ProfileImage = profileImage;
         Bio = bio;
         Quote = quote;
+        Balance = balance;
         Validate();
     }
 
