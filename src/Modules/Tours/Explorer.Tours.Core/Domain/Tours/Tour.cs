@@ -49,7 +49,7 @@ namespace Explorer.Tours.Core.Domain.Tours
             Status = TourStatus.Draft;
             PublishedDateTime = null; 
             ArchivedDateTime = null;
-            Price = 0;
+            Price = 100;
             UserId = userId;
             
 
