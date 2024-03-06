@@ -10,6 +10,7 @@ namespace Explorer.Payments.Core.Domain.repositoryinterfaces
     public interface ITourPurchaseTokenRepository
     {
         List<TourPurchaseToken> GetAll();
+        bool HasToken(int touristId, int tourId);
 
     }
 }
